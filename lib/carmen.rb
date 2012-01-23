@@ -124,9 +124,11 @@ module Carmen
   #   Carmen::states => [['Alabama', 'AL'], ['Arkansas', 'AR'], ... ]
   def self.states(country_code = Carmen.default_country, options={})
     raise NonexistentCountry.new("Country not found for code #{country_code}") unless country_codes.include?(country_code)
-    raise StatesNotSupported unless states?(country_code)
-
-    results = search_collection(@states, country_code, 0, 1)
+    results = if states?(country_code)
+     search_collection(@states, country_code, 0, 1)
+    else
+      [[I18n.t('carmen.states.none'), '']]
+    end
 
     if excluded_states[country_code]
         results.reject { |s| excluded_states[country_code].include?(s[1]) }

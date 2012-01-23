@@ -144,10 +144,8 @@ class TestCarmen < Test::Unit::TestCase
     end
   end
 
-  def test_unsupported_states_exception
-    assert_raises Carmen::StatesNotSupported do
-      Carmen::state_codes('ID')
-    end
+  def test_unsupported_states_return_blank_array
+    assert_equal [""], Carmen::state_codes('ID')
   end
 
   def test_special_characters_dont_rails_an_exception
