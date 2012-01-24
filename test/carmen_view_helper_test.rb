@@ -16,6 +16,13 @@ class CarmenViewHelperTest < ActionView::TestCase
     @address = stub(:state => 'IL', :country => 'US', :to_s => 'address')
   end
 
+  def test_locale_select
+    html = country_select(:address, :country, ['GB'], {:locale => :de})
+    assert html.include?("Vereinigtes Königreich Großbritannien und Nordirland")
+    #It should not include United Kingdom at all (this is to check on the priority countries language)
+    assert !html.include?("United Kingdom")
+  end
+
   def test_state_select_for_us
     @address.stubs(:state => 'nil')
     assert_equal US_STATE_SELECT_HTML.chomp, state_select(@address, :state, 'US')
@@ -31,7 +38,7 @@ class CarmenViewHelperTest < ActionView::TestCase
   end
 
   def test_stable_order_of_priority_countries
-    html = country_options_for_select('US', 'US', 'CA')
+    html = country_options_for_select('US', ['US', 'CA'])
     assert html.index('value="US"') < html.index('value="CA"')
   end
 

@@ -20,11 +20,11 @@ module ActionView
       # Returns a string of option tags for pretty much any country in the world. Supply a country name as +selected+ to
       # have it marked as the selected option tag. You can also supply a list of country codes as additional parameters, so
       # that they will be listed above the rest of the (long) list.
-      def country_options_for_select(selected = nil, *priority_country_codes)
+      def country_options_for_select(selected = nil, priority_country_codes = nil, options = {})
         country_options = ""
 
         unless priority_country_codes.empty?
-          priority_countries = Carmen::countries.select do |pair| name, code = pair
+          priority_countries = Carmen.countries(options.dup).select do |pair| name, code = pair
             priority_country_codes.include?(code)
           end
           unless priority_countries.empty?
@@ -34,7 +34,7 @@ module ActionView
           end
         end
 
-        return country_options + options_for_select(Carmen.countries, priority_country_codes.include?(selected) ? nil : selected)
+        return country_options + options_for_select(Carmen.countries(options), priority_country_codes.include?(selected) ? nil : selected)
       end
     end
 
@@ -43,7 +43,7 @@ module ActionView
         html_options = html_options.stringify_keys
         add_default_name_and_id(html_options)
         value = value(object)
-        opts = add_options(country_options_for_select(value, *priority_countries), options, value)
+        opts = add_options(country_options_for_select(value, priority_countries, options), html_options, value)
         content_tag("select", opts, html_options)
       end
 
