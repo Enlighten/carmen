@@ -5,15 +5,15 @@ $:.unshift lib unless $:.include?(lib)
 require 'carmen/version'
 
 Gem::Specification.new do |s|
-  s.name = "carmen"
+  s.name = "carmen-enphase"
   s.version = Carmen::VERSION
   s.platform    = Gem::Platform::RUBY
 
-  s.authors = ["Jim Benton"]
+  s.authors = ["Jim Benton, Eric Cranston"]
   s.email = "jim@autonomousmachine.com"
   s.homepage = "http://github.com/jim/carmen"
-  s.summary = "A collection of geographic country and state names for Ruby"
-  s.description = "A collection of geographic country and state names for Ruby. Also includes replacements for Rails' country_select and state_select plugins"
+  s.summary = "Fork of Carmen with a few behaviour changes. Carmen is a collection of geographic country and state names for Ruby"
+  s.description = "Fork of Carmen with a few behaviour changes. Carmen is a collection of geographic country and state names for Ruby. Also includes replacements for Rails' country_select and state_select plugins"
 
   s.required_rubygems_version = ">= 1.3.6"
   s.add_development_dependency('mocha')
