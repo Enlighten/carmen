@@ -5,13 +5,13 @@ $:.unshift lib unless $:.include?(lib)
 require 'carmen/version'
 
 Gem::Specification.new do |s|
-  s.name = "carmen-enphase"
+  s.name = "enphase-carmen"
   s.version = Carmen::VERSION
   s.platform    = Gem::Platform::RUBY
 
   s.authors = ["Jim Benton, Eric Cranston"]
   s.email = "jim@autonomousmachine.com"
-  s.homepage = "http://github.com/jim/carmen"
+  s.homepage = "http://github.com/enlighten/carmen/tree/0.2.x"
   s.summary = "Fork of Carmen with a few behaviour changes. Carmen is a collection of geographic country and state names for Ruby"
   s.description = "Fork of Carmen with a few behaviour changes. Carmen is a collection of geographic country and state names for Ruby. Also includes replacements for Rails' country_select and state_select plugins"
 
