@@ -127,7 +127,7 @@ module Carmen
     results = if states?(country_code)
      search_collection(@states, country_code, 0, 1)
     else
-      [[I18n.t('carmen.states.none'), '']]
+      []
     end
 
     if excluded_states[country_code]
