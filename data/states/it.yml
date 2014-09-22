@@ -17,6 +17,8 @@
   - AV
 - - Bari
   - BA
+- - Barletta-Andria-Trani
+  - BT
 - - Belluno
   - BL
 - - Benevento
@@ -39,6 +41,8 @@
   - CL
 - - Campobasso
   - CB
+- - Carbonia-Iglesias
+  - CI
 - - Caserta
   - CE
 - - Catania
@@ -59,14 +63,16 @@
   - CN
 - - Enna
   - EN
+- - Fermo
+  - FM
 - - Ferrara
   - FE
 - - Firenze
   - FI
 - - Foggia
   - FG
-- - Forl
-  - FO
+- - Forlì-Cesena
+  - FC
 - - Frosinone
   - FR
 - - Genova
@@ -103,18 +109,26 @@
   - MS
 - - Matera
   - MT
+- - Medio Campidano
+  - VS
 - - Messina
   - ME
 - - Milano
   - MI
 - - Modena
   - MO
+- - Monza e della Brianza
+  - MB
 - - Napoli
   - NA
 - - Novara
   - "NO"
 - - Nuoro
   - NU
+- - Ogliastra
+  - OG
+- - Olbia-Tempio
+  - OT
 - - Oristano
   - OR
 - - Padova
@@ -193,7 +207,7 @@
   - VA
 - - Venezia
   - VE
-- - Verbania
+- - Verbano-Cusio-Ossola
   - VB
 - - Vercelli
   - VC
