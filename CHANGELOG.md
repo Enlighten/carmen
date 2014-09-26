@@ -1,3 +1,7 @@
+### 0.2.15
+* Updated Italian provinces.
+### 0.2.14
+* enphase custom gem for fixing country select, return nil when no states found instead of a translation.
 ### 0.2.12
 * Republish the gem with Ruby 1.8.7.
 ### 0.2.11
