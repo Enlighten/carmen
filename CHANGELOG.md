@@ -1,6 +1,45 @@
+### 1.1 (master)
+* Replace use of UnicodeUtils with ActiveSupport (eikes)
+* Update data from upstream sources.
+* Fix spelling errors for French subregions (hugolantaume)
+* Fix spelling errors for Spanish subregions (nudzg)
+* Added missing nl translations for bq, cw, ss and sx (brtdv)
+* Moved translations into locale/overlay from locale/base. Base is only for data from iso_codes.
+* Changed the official name of Taiwan to Republic of China.
+* Fixed the name of Vietnam.
+
+### 1.0.1
+* Avoid raising an exception when calling Querying#coded with a nil code
+* Fix a bug where adding additional data paths caused an error when looking up localized names in the base locale data (seangaffney)
+* Add Country#numeric_code (stevenharman)
+* Fix the name of Lima (goddamnhippie)
+* Add south Sudan Swedish translation (barsoom)
+* Add Russian translations of Russian Federation (Envek)
+* Fix a regression in the localization of Taiwan from the 1.0 rewrite.
+* Fix a bug where empty locale files would prevent access to the base data.
+* Add a way to ship overlayed data sets with Carmen to allow for differences from the upstream data source.
+* Remove Puerto Rico from the list of countries as it is a subregion.
+* Restore the naming of Taiwan after a regression to an outdated name.
+* Added La Rioja to the list of subregions of Argentina (njacobs1)
+* Added APO states to US subregions.
+
+### 1.0.0 (April 20, 2013)
+* Updated version numbering and pushed 1.0.0pre to v1.0.0.
+* Merged in updates to German locations, via a patch from @leifg
+
 ### 1.0.0pre
 * Complete rewrite. New data source and API. Extracting Rails view
   helpers into seperate gem.
+
+### 0.2.12
+* Republish the gem with Ruby 1.8.7.
+
+### 0.2.11
+* Remove Jeweler and release new version.
+
+### 0.2.10
+* Generate the gem with Ruby 1.8.7 to try to fix YAML library
+  incompatibilities.
 
 ### 0.2.9
 * Preserve order of priority_countries in country_select (castiglione)

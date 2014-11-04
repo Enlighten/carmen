@@ -11,11 +11,21 @@ module Carmen
 
     attr_reader :alpha_2_code
     attr_reader :alpha_3_code
+    attr_reader :numeric_code
 
-    def initialize(data={}, parent)
-      super
+    def initialize(data={}, parent=nil)
       @alpha_2_code = data['alpha_2_code']
       @alpha_3_code = data['alpha_3_code']
+      @numeric_code = data['numeric_code']
+      super
+    end
+
+    def common_name
+      Carmen.i18n_backend.translate(path('common_name'))
+    end
+
+    def official_name
+      Carmen.i18n_backend.translate(path('official_name'))
     end
 
     def self.all
@@ -27,7 +37,11 @@ module Carmen
     end
 
     def inspect
-      "<##{self.class} name=\"#{name}\">"
+      %(<##{self.class} name="#{name}">)
+    end
+
+    def code
+      alpha_2_code
     end
 
   private
