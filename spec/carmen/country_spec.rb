@@ -7,9 +7,32 @@ describe Carmen::Country do
     countries.size.must_equal 3
   end
 
-  it "provides an API for finding countries by name" do
-    eastasia = Carmen::Country.named('Eastasia')
-    eastasia.instance_of?(Carmen::Country).must_equal true
+  describe "API for finding countries by name" do
+    it "provides exact matching" do
+      eastasia = Carmen::Country.named('Eastasia')
+      eastasia.instance_of?(Carmen::Country).must_equal true
+    end
+
+    it "provides case-insensitive searches by default" do
+      eurasia = Carmen::Country.named('eUrAsIa')
+      eurasia.instance_of?(Carmen::Country).must_equal true
+      eurasia.name.must_equal 'Eurasia'
+    end
+
+    it "provides case-sensitive searches optionally" do
+      oceania = Carmen::Country.named('oCeAnIa', :case => true)
+      oceania.must_equal nil
+      oceania = Carmen::Country.named('Oceania', :case => true)
+      oceania.instance_of?(Carmen::Country).must_equal true
+      oceania.name.must_equal 'Oceania'
+    end
+
+    it "provides fuzzy (substring) matching optionally" do
+      eastasia = Carmen::Country.named('East', :fuzzy => true)
+      eastasia.instance_of?(Carmen::Country).must_equal true
+      eastasia.name.must_equal 'Eastasia'
+    end
+
   end
 
   it "provides an API for finding countries by code" do
@@ -30,12 +53,27 @@ describe Carmen::Country do
       @oceania.name.must_equal 'Oceania'
     end
 
+    it "has an official name" do
+      @oceania.official_name.must_equal 'The Superstate of Oceania'
+    end
+    it "has a common name" do
+      @oceania.common_name.must_equal 'Oceania'
+    end
+
     it "has a 2 character code" do
       @oceania.alpha_2_code.must_equal 'OC'
     end
 
     it "has a 3 character code" do
       @oceania.alpha_3_code.must_equal 'OCE'
+    end
+
+    it "has code as an alias to alpha_2_code" do
+      @oceania.code.must_equal 'OC'
+    end
+
+    it "has a numeric code" do
+      @oceania.numeric_code.must_equal '001'
     end
 
     it "has the world as a parent" do
@@ -47,56 +85,5 @@ describe Carmen::Country do
     end
   end
 
-  describe "a country with subregions" do
-    before do
-      @oceania = Carmen::Country.coded('OC')
-    end
-
-    it 'has a subregion data path' do
-      expected = Carmen.data_path + 'world/oc.yml'
-      @oceania.subregion_data_path.must_equal expected
-    end
-
-    it "has subregions" do
-      @oceania.subregions?.must_equal true
-    end
-
-    it "has subregions" do
-      @oceania.subregions.instance_of?(Carmen::RegionCollection).must_equal true
-      @oceania.subregions.size.must_equal 1
-    end
-
-    it "can use Querying methods on the subregions collection" do
-      airstrip_one = @oceania.subregions.coded('AO')
-      airstrip_one.instance_of?(Carmen::Region).must_equal true
-    end
-
-    it "loads all attributes for subregions" do
-      airstrip_one = @oceania.subregions.first
-
-      airstrip_one.name.must_equal "Airstrip One"
-      airstrip_one.type.must_equal "providence"
-      airstrip_one.code.must_equal "AO"
-    end
-
-    it "sets itself as the parent of a subregions" do
-      airstrip_one = @oceania.subregions.first
-      airstrip_one.parent.must_equal @oceania
-    end
-  end
-
-  describe "a country without subregions" do
-    before do
-      @eastasia = Carmen::Country.coded('ES')
-    end
-
-    it "has no subregions" do
-      @eastasia.subregions?.must_equal false
-    end
-
-    it "has an empty subregions collection" do
-      @eastasia.subregions.must_equal []
-    end
-  end
 
 end
